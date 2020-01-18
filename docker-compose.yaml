@@ -1,0 +1,30 @@
+version: '3.4'
+services:
+    zedelivery:
+        image: joaoviniciuss/zedeliverytest
+        container_name: ze_compose
+        ports:
+          - 8889:8080
+        depends_on:
+          - db
+          - pgadmin
+    db:
+        image: postgres:11
+        container_name: postgres_compose
+        environment:
+          - POSTGRES_PASSWORD=postgres
+          - POSTGRES_DB=zeDelivery
+        ports:
+          - "5432:5432"
+        volumes:
+          - database:/var/lib/postgresql/data
+    pgadmin:
+        image: dpage/pgadmin4:latest
+        container_name: pgadmin_compose
+        environment:
+          - PGADMIN_DEFAULT_EMAIL=joaoviniciuss@gmail.com
+          - PGADMIN_DEFAULT_PASSWORD=123456
+        ports:
+          - "15433:80"         
+volumes:
+  database:
