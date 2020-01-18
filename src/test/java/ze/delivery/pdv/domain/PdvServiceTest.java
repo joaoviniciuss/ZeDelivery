@@ -58,7 +58,7 @@ public class PdvServiceTest {
 
         final Pdv pdvToNonSave = createPdv(new Coordinate(-46.42513275146484, -23.563357737930875), "1432132123891/0004");
         final ResponseEntity<Pdv> noCreatedResult = service.save(pdvToNonSave);
-        Assert.assertThat(noCreatedResult, Matchers.equalTo(ResponseEntity.badRequest()));
+        Assert.assertThat(noCreatedResult.getStatusCodeValue(), Matchers.equalTo(400));
     }
 
 

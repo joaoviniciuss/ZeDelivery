@@ -42,7 +42,7 @@ public class PdvController {
         return service.findById(id);
     }
 
-    @GetMapping(path = {"/{longitude},{latitude}"})
+    @GetMapping(path = {"/{longitude}/{latitude}"})
     @DefaultResponseDocumentation
     @ApiOperation("Get PDV by request position")
     public ResponseEntity findByRequestPosition(@PathVariable String longitude, @PathVariable String latitude) {
