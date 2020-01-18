@@ -10,6 +10,7 @@ import ze.delivery.commons.base.domain.EntityBase;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -29,18 +30,24 @@ public class Pdv implements EntityBase, DataTransferObject {
 
     @NotEmpty(message = "Trading name can't be empty")
     @NotBlank(message = "Trading can't be blank")
+    @NotNull
     private String tradingName;
 
     @NotEmpty(message = "Owner name can't be empty")
     @NotBlank(message = "Owner can't be blank")
+    @NotNull
     private String ownerName;
 
     @NotEmpty(message = "Document can't be empty")
     @NotBlank(message = "Document can't be blank")
+    @NotNull
+    @Column(unique = true)
     private String document;
 
+    @NotNull
     private MultiPolygon coverageArea;
 
+    @NotNull
     private Point address;
 
     public boolean containPoint(Point point){

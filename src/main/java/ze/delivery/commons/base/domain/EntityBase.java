@@ -8,7 +8,7 @@ import java.util.UUID;
 public interface EntityBase {
     @ApiModelProperty(hidden = true)
     Long getId();
-    void setId(Long uuid);
+    void setId(Long id);
 
     @JsonIgnore
     default String getIdAsString() {
