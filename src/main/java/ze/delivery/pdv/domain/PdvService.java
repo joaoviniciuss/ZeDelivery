@@ -39,7 +39,7 @@ public class PdvService {
     public ResponseEntity findById(@PathVariable Long id) {
         return repository.findById(id)
                 .map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.noContent().build());
     }
 
     public ResponseEntity findByPoint(String lgt, String lat) {
@@ -57,7 +57,7 @@ public class PdvService {
         if (pdvsWithPoint.size() == 1)
             return ResponseEntity.ok().body(pdvsWithPoint.get(0));
         else if (pdvsWithPoint.size() == 0)
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
 
         for (Pdv pdv : pdvsWithPoint) {
 
