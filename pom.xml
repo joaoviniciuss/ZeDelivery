@@ -53,11 +53,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
-           <dependency>
-               <groupId>org.mariadb.jdbc</groupId>
-               <artifactId>mariadb-java-client</artifactId>
-               <version>2.5.3</version>
-           </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>2.5.3</version>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -92,20 +92,28 @@
             <version>1.18.10</version>
             <scope>provided</scope>
         </dependency>
-        <!--      <dependency>
-                  <groupId>com.mapbox.mapboxsdk</groupId>
-                  <artifactId>mapbox-sdk-turf</artifactId>
-                  <version>5.0.0</version>
-              </dependency>
-              <dependency>
-                  <groupId>com.mapbox.mapboxsdk</groupId>
-                  <artifactId>mapbox-sdk-services</artifactId>
-                  <version>5.0.0</version>
-              </dependency>-->
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
+            <version>1.12.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>1.12.3</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-spatial</artifactId>
             <version>5.2.12.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit</artifactId>
+            <version>0.11.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

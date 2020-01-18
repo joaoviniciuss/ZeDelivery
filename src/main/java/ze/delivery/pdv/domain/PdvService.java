@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import ze.delivery.pdv.application.PdvRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,12 +23,13 @@ public class PdvService {
         this.repository = repository;
     }
 
-    public ResponseEntity save(Pdv pdv) {
+    @Transactional
+    public ResponseEntity save(Pdv entity) {
 
-        if (!pdv.containPoint(pdv.getAddress()))
+        if (!entity.containPoint(entity.getAddress()))
             ResponseEntity.badRequest().build();
 
-        return ResponseEntity.ok().body(repository.save(pdv));
+        return ResponseEntity.ok().body(repository.save(entity));
     }
 
     public List<Pdv> findAll() {

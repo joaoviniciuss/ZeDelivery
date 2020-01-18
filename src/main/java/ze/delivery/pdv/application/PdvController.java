@@ -1,7 +1,9 @@
 package ze.delivery.pdv.application;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vividsolutions.jts.geom.Point;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +42,7 @@ public class PdvController {
         return service.findById(id);
     }
 
-    @GetMapping(path = {"/{longitude}/{latitude}"})
+    @GetMapping(path = {"/{longitude},{latitude}"})
     @DefaultResponseDocumentation
     @ApiOperation("Get PDV by request position")
     public ResponseEntity findByRequestPosition(@PathVariable String longitude, @PathVariable String latitude) {
@@ -53,4 +55,5 @@ public class PdvController {
     public ResponseEntity create(@RequestBody Pdv pdv) {
         return service.save(pdv);
     }
+
 }
