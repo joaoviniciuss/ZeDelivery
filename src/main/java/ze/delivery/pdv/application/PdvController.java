@@ -1,5 +1,6 @@
 package ze.delivery.pdv.application;
 
+import com.vividsolutions.jts.geom.Point;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,16 +36,21 @@ public class PdvController {
     @GetMapping(path = {"/{id}"})
     @DefaultResponseDocumentation
     @ApiOperation("Get PDV by id")
-    public ResponseEntity findById(@PathVariable UUID id) {
-        return repository.findById(id)
-                .map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity findById(@PathVariable Long id) {
+        return service.findById(id);
+    }
+
+    @GetMapping(path = {"/{longitude}/{latitude}"})
+    @DefaultResponseDocumentation
+    @ApiOperation("Get PDV by request position")
+    public ResponseEntity findByRequestPosition(@PathVariable String longitude, @PathVariable String latitude) {
+        return service.findByPoint(longitude, latitude);
     }
 
     @PostMapping
     @DefaultResponseDocumentation
     @ApiOperation("Create one PDV")
-    public Pdv create(@RequestBody Pdv pdv) {
+    public ResponseEntity create(@RequestBody Pdv pdv) {
         return service.save(pdv);
     }
 }

@@ -39,10 +39,16 @@ public class Pdv implements EntityBase, DataTransferObject {
     @NotBlank(message = "Document can't be blank")
     private String document;
 
-    //@Column(name = "coverageArea",columnDefinition="Polygon[]")
     private MultiPolygon coverageArea;
 
-    //@Column(name = "address",columnDefinition="Point")
     private Point address;
+
+    public boolean containPoint(Point point){
+        return coverageArea.contains(point);
+    }
+
+    public double getDistanceToPoint(Point point){
+        return address.distance(point);
+    }
 
 }
