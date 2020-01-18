@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/zeDelivery
+    url: jdbc:postgresql://postgres_compose:5432/zeDelivery
     username: postgres
-    password: totvs@123
+    password: postgres
     hikari:
       pool-name: ze-pool
   jpa:
