@@ -27,7 +27,7 @@ public class PdvService {
     public ResponseEntity save(Pdv entity) {
 
         if (!entity.containPoint(entity.getAddress()))
-            ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().build();
 
         return ResponseEntity.ok().body(repository.save(entity));
     }

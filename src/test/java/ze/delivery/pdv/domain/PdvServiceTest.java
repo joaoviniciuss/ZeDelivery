@@ -3,10 +3,13 @@ package ze.delivery.pdv.domain;
 import com.vividsolutions.jts.geom.*;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import ze.delivery.PostgresSQLTestsConfiguration;
@@ -24,9 +27,12 @@ public class PdvServiceTest {
     @Autowired
     PdvService service;
 
+    @Rule
+    public ExpectedException exceptionRule = ExpectedException.none();
+
     @Test
     public void shouldRunAllRestVerbsCorrectly() throws IOException {
-        final Pdv pdvToSave = createPdv();
+        final Pdv pdvToSave = createPdv(new Coordinate(-46.47441029548645, -23.544258235698877), "1432132123891/0001");
         final ResponseEntity<Pdv> createdResult = service.save(pdvToSave);
         final Pdv createdPdv = createdResult.getBody();
         Assert.assertThat(createdPdv, Matchers.notNullValue());
@@ -43,11 +49,33 @@ public class PdvServiceTest {
         final Object pdvByPoint = findByPoint.getBody();
         Assert.assertThat(pdvByPoint, Matchers.notNullValue());
 
+        doNotSavePdvWithSomeDocument();
+
     }
 
-    private Pdv createPdv() throws IOException {
+    @Test
+    public void doNotSavePdvWithAddressOutsideCoverageArea() throws IOException {
+
+        final Pdv pdvToNonSave = createPdv(new Coordinate(-46.42513275146484, -23.563357737930875), "1432132123891/0004");
+        final ResponseEntity<Pdv> noCreatedResult = service.save(pdvToNonSave);
+        Assert.assertThat(noCreatedResult, Matchers.equalTo(ResponseEntity.badRequest()));
+    }
+
+
+    public void doNotSavePdvWithSomeDocument() throws IOException {
+
+        try {
+            final Pdv pdvToNonSave = createPdv(new Coordinate(-46.47441029548645, -23.544258235698877), "1432132123891/0001");
+        } catch (Exception e) {
+            exceptionRule.expect(DataIntegrityViolationException.class);
+        }
+
+
+    }
+
+    private Pdv createPdv(Coordinate address, String document) throws IOException {
         GeometryFactory gf = new GeometryFactory();
-        Point point = gf.createPoint(new Coordinate(-46.47441029548645, -23.544258235698877));
+        Point point = gf.createPoint(address);
 
         Coordinate[] coords = new Coordinate[]{
                 new Coordinate(-46.475815773010254, -23.543854972215986),
@@ -72,9 +100,9 @@ public class PdvServiceTest {
         final MultiPolygon multiPolygon = gf.createMultiPolygon(polygons);
 
         return Pdv.builder()
-                .tradingName("Proximo a Algumas quadras")
+                .tradingName("Fiel Zone")
                 .document("1432132123891/0001")
-                .ownerName("Zé da Silva")
+                .ownerName("30 milhões de loucos")
                 .address(point)
                 .coverageArea(multiPolygon)
                 .build();
