@@ -1,13 +1,13 @@
 spring:
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/zeDelivery
-    username: root
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/zeDelivery
+    username: postgres
     password: totvs@123
     hikari:
-      pool-name: lgpd-pool
+      pool-name: ze-pool
   jpa:
-    database-platform: org.hibernate.spatial.dialect.mysql.MySQLSpatialDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     generate-ddl: true
     hibernate:
       ddl-auto: update

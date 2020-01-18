@@ -1,13 +1,12 @@
-package ze.delivery.commons.pdv.application;
+package ze.delivery.pdv.application;
 
-import com.vividsolutions.jts.geom.MultiPolygon;
-import com.vividsolutions.jts.geom.Point;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ze.delivery.commons.documentation.DefaultResponseDocumentation;
-import ze.delivery.commons.pdv.domain.Pdv;
+import ze.delivery.pdv.domain.Pdv;
+import ze.delivery.pdv.domain.PdvService;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,6 +15,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/v1/pdv")
 public class PdvController {
+
+    @Autowired
+    private PdvService service;
 
     private PdvRepository repository;
 
@@ -43,6 +45,6 @@ public class PdvController {
     @DefaultResponseDocumentation
     @ApiOperation("Create one PDV")
     public Pdv create(@RequestBody Pdv pdv) {
-        return repository.save(pdv);
+        return service.save(pdv);
     }
 }

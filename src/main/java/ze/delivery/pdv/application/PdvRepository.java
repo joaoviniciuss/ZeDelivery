@@ -1,14 +1,9 @@
-package ze.delivery.commons.pdv.application;
+package ze.delivery.pdv.application;
 
-import com.vividsolutions.jts.geom.MultiPolygon;
-import com.vividsolutions.jts.geom.Point;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import ze.delivery.commons.pdv.domain.Pdv;
+import ze.delivery.pdv.domain.Pdv;
 
-import javax.transaction.Transactional;
-import java.util.List;
 import java.util.UUID;
 
 public interface PdvRepository extends JpaRepository<Pdv, UUID> {
