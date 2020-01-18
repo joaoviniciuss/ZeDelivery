@@ -115,7 +115,7 @@ URL: http://localhost:8889/v1/pdv
 
 Este *endpoint* retorna todos os estabelecimentos cadastrados.
 
->Caso nenhum registro seja encontrado o retorna o erro 400 (não encontrado)
+>Caso nenhum registro seja encontrado o retorna o erro 204
 
 ### **GET BY ID**
 
@@ -123,7 +123,7 @@ URL: http://localhost:8889/v1/pdv/{id}
 
 Este *endpoint* retorna o estabelecimento por ID.
 
->Caso nenhum registro seja encontrado o retorna o erro 400 (não encontrado)
+>Caso nenhum registro seja encontrado o retorna o erro 204
 
 
 ### **GET BY POSITION**
@@ -132,7 +132,7 @@ URL: http://localhost:8889/v1/pdv/{longitude}/{latitude}
 
 Este *endpoint* retorna o estabelecimento mais próximo da longitude e latitude informadas no momento da requisição.
 
->Caso nenhum registro seja encontrado o retorna o erro 400 (não encontrado)
+>Caso nenhum registro seja encontrado o retorna o erro 204 
 
 ## **Executando sem a utilização do Docker**
 
