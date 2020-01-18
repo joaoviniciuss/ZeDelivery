@@ -107,7 +107,7 @@ Body:
 Algumas informações extras:
 
 > Não permite a inclusão de mais de um registro com o mesmo CNPJ (*document*)
-> Não permite a inserção de registro cuja sede (*addres*) não esteja dentro da área de cobertura (*coverageArea*)
+> Não permite a inserção de registro cuja sede (*address*) não esteja dentro da área de cobertura (*coverageArea*)
 
 ### **GET ALL**
 
