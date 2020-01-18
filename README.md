@@ -134,7 +134,7 @@ Este *endpoint* retorna o estabelecimento mais próximo da longitude e latitude 
 
 >Caso nenhum registro seja encontrado o retorna o erro 400 (não encontrado)
 
-## **Execunato sem o utilização do Docker**
+## **Executando sem o utilização do Docker**
 
 Para executar a aplicação sem a utilização do Docker siga os passos abaixo:
 
