@@ -37,8 +37,9 @@ public class PdvServiceTest {
         final Pdv createdPdv = createdResult.getBody();
         Assert.assertThat(createdPdv, Matchers.notNullValue());
 
-        final List<Pdv> findAllResult = service.findAll();
-        Assert.assertThat(findAllResult, Matchers.hasSize(1));
+        final ResponseEntity findAllResult = service.findAll();
+        final Object allPdv = findAllResult.getBody();
+        Assert.assertThat(allPdv, Matchers.notNullValue());
 
         final Long id = createdPdv.getId();
         final ResponseEntity findByIdResult = service.findById(id);

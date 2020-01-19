@@ -115,7 +115,7 @@ URL: http://localhost:8889/v1/pdv
 
 Este *endpoint* retorna todos os estabelecimentos cadastrados.
 
->Caso nenhum registro seja encontrado o retorna o status 200 com uma lista vazia
+>Caso nenhum registro seja encontrado o retorna o status 204 
 
 ### **GET BY ID**
 
